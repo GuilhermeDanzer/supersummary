@@ -16,7 +16,7 @@ const CustomDatalist = ({ options, onSelect }) => {
   )
 
   const handleOptionSelect = option => {
-    setSearchTerm('')
+    setSearchTerm(option.display_name)
     onSelect(option)
     setDropdownOpen(false)
     inputRef.current.blur()

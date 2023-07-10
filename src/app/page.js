@@ -1,8 +1,9 @@
 'use client'
-import styles from './page.module.css'
+import styles from './styles/page.module.css'
 import { useState, useEffect } from 'react'
 import { getBooksList, getBooks } from '../services/BookServices'
 import CustomDatalist from '@/components/CustomDatalist'
+import BookCard from '@/components/BookCard'
 export default function Home() {
   const [booksList, setBookLists] = useState([])
   const [books, setBooks] = useState([])
@@ -22,6 +23,7 @@ export default function Home() {
       setBooks(response.books)
     })
   }, [endpoint])
+  console.log(books)
   return (
     <main>
       <div className={styles['search-div']}>
@@ -32,7 +34,11 @@ export default function Home() {
           onSelect={handleSelect}
         />{' '}
       </div>
-      <div></div>
+      <section className={styles['bookshelf-div']}>
+        {books.map(book => {
+          return <BookCard book={book} />
+        })}
+      </section>
     </main>
   )
 }

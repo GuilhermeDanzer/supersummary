@@ -1,0 +1,19 @@
+.search-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.search-div > p {
+  color: #1f7f89;
+  font-weight: bold;
+  font-size: 20px;
+}
+.bookshelf-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
