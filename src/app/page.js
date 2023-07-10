@@ -4,14 +4,17 @@ import { useState, useEffect } from 'react'
 import { getBooksList, getBooks } from '../services/BookServices'
 import CustomDatalist from '@/components/CustomDatalist'
 import BookCard from '@/components/BookCard'
+
 export default function Home() {
   const [booksList, setBookLists] = useState([])
   const [books, setBooks] = useState([])
   const [endpoint, setEndpoint] = useState('hardcover-fiction')
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleSelect = option => {
     setEndpoint(option.list_name_encoded)
   }
+
   useEffect(() => {
     getBooksList().then(response => {
       setBookLists(response)
@@ -19,11 +22,13 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     getBooks(endpoint).then(response => {
       setBooks(response.books)
+      setIsLoading(false)
     })
   }, [endpoint])
-  console.log(books)
+
   return (
     <main>
       <div className={styles['search-div']}>
@@ -32,12 +37,16 @@ export default function Home() {
           key={booksList}
           options={booksList}
           onSelect={handleSelect}
-        />{' '}
+        />
       </div>
       <section className={styles['bookshelf-div']}>
-        {books.map(book => {
-          return <BookCard book={book} />
-        })}
+        {isLoading ? (
+          <div>
+            <div className={styles['loader']}></div>
+          </div>
+        ) : (
+          books.map(book => <BookCard book={book} buttonText="See on Amazon" />)
+        )}
       </section>
     </main>
   )

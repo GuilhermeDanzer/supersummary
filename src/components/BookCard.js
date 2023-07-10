@@ -1,13 +1,7 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import styles from './styles/BookCard.module.css'
 
-import Link from 'next/link'
-
-const BookCard = (
-  { book, buttonAction = () => console.log('a'), buttonText = 'Click Here' },
-
-  ref
-) => {
+const BookCard = ({ book, buttonText = 'Click Here' }) => {
   const addDefaultSrc = ev => {
     ev.target.src = '/no-image.png'
     ev.target.style.width = '200px'
@@ -16,7 +10,7 @@ const BookCard = (
   }
 
   return (
-    <div className={styles['card-div']} ref={ref}>
+    <div className={styles['card-div']}>
       <div className={styles['img-div']}>
         <img
           className={styles.img}
@@ -33,7 +27,7 @@ const BookCard = (
         </div>
         <a target="_blank" href={book.amazon_product_url}>
           <div className={styles['button-div']}>
-            <button className={styles['button']}>See on Amazon</button>
+            <button className={styles['button']}>{buttonText}</button>
           </div>
         </a>
       </div>
@@ -41,4 +35,4 @@ const BookCard = (
   )
 }
 
-export default forwardRef(BookCard)
+export default BookCard

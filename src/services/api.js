@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // In a real application, the API_KEY could be stored in a .env file
-const API_KEY = 'oAr4lPqoNtqldRwwvWO05WbPgXm5AQcx'
+const API_KEY = 'XaU5FKeSeZitAgWyVkdMQDzmMZnYo2So'
 
 const baseURL = (endpoint = '', parameters = '') =>
   `https://api.nytimes.com/svc/books/v3/${endpoint}?${parameters}api-key=${API_KEY}`

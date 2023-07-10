@@ -6,7 +6,7 @@
   width: 200px;
   padding: 8px;
   border-radius: 10px;
-  border: 2px solid #1f7f89;
+  border: 2px solid var(--mainGreen);
 }
 
 .custom-datalist-options {
